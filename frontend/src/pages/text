@@ -1,0 +1,24 @@
+<div className="container mx-auto py-12 px-16 md:columns-2 md:mt-20">
+  <div className="">
+    <h1 className="text-5xl font-bold mb-4 text-green-900">
+      NITHUB PROJECT <br />
+      MANAGEMENT <br />
+      PLATFORM
+    </h1>
+    <p className="text-lg mb-4 mt-10 ">
+      Orci porta non pulvinar neque laoreet suspendisse interdum consectetur
+      libero. Volutpat odio facilisis mauris sit amet massa vitae tortor
+      condimentum. Nunc vel risus commodo viverra maecenas
+    </p>
+    <Button
+      className="mt-10 w-52 h-14 text-white hover:bg-white bg-green-900 hover:text-green-900 font-extrabold text-md"
+      variant="outlined"
+    >
+      Get Started
+    </Button>
+  </div>
+
+  <div className="mt-3">
+    <img src="{img}" alt="Placeholder Image" className="w-full h-auto" />
+  </div>
+</div>
