@@ -20,10 +20,10 @@ const Signup = () => {
           </div>
           <div className="flex justify-center">
             <div className="flex justify-center flex-col w-72 gap-10 ">
-              <Input label="Name" size="lg" />
-              <Input label="Email" size="lg" />
-              <Input label="Password" size="lg" />
-              <Input label="Confrim Password" size="lg" />
+              <Input label="Name" size="lg" type="text" />
+              <Input label="Email" size="lg" type="email" />
+              <Input label="Password" size="lg" type="password" />
+              <Input label="Confrim Password" size="lg" type="password" />
             </div>
           </div>
           <div className="flex justify-center">
