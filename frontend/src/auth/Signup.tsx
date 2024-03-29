@@ -2,8 +2,10 @@ import React from "react";
 import { Button, Typography, Input } from "@material-tailwind/react";
 import img from "../assets/landing-page-img.png";
 import Nav_bar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="mb-3">
@@ -35,7 +37,12 @@ const Signup = () => {
           <div className="flex justify-center mt-3">
             <Typography>
               Already have an account?{" "}
-              <a className="hover:underline hover:cursor-pointer">Login</a>
+              <a
+                className="hover:underline hover:cursor-pointer"
+                onClick={() => navigate("/auth/login")}
+              >
+                Login
+              </a>
             </Typography>
           </div>
         </div>
