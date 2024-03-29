@@ -2,8 +2,10 @@ import React from "react";
 import { Button } from "@material-tailwind/react";
 import img from "../assets/landing-page-img.png";
 import Nav_bar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Nav_bar />
@@ -26,6 +28,7 @@ const LandingPage = () => {
           <Button
             className="mt-10 w-52 h-14 text-white hover:bg-white bg-green-900 hover:text-green-900  text-md"
             variant="outlined"
+            onClick={() => navigate("/auth/signup")}
           >
             Get Started
           </Button>
