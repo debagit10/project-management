@@ -19,8 +19,8 @@ const Login = () => {
             </Typography>
           </div>
           <div className="flex justify-center">
-            <div className="flex justify-center flex-col w-72 gap-10 ">
-              <Input label="Email" size="lg" type="text" />
+            <div className="flex justify-center flex-col w-72 gap-10">
+              <Input label="Email" size="lg" type="email" />
               <Input label="Password" size="lg" type="password" />
             </div>
           </div>

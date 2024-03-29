@@ -8,7 +8,9 @@ const LandingPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Nav_bar />
+      <div>
+        <Nav_bar />
+      </div>
       <div className="container mx-auto px-4 flex flex-col md:flex-row gap-8 md:mt-20">
         <div className="md:w-1/2 ">
           <h1 className="text-5xl font-bold mb-4 text-green-900">
@@ -29,6 +31,9 @@ const LandingPage = () => {
             className="mt-10 w-52 h-14 text-white hover:bg-white bg-green-900 hover:text-green-900  text-md"
             variant="outlined"
             onClick={() => navigate("/auth/signup")}
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Get Started
           </Button>
