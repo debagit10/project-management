@@ -17,14 +17,15 @@ const Sidebar = () => {
   const [active, setActive] = useState(0);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  const openDrawer = () => setIsDrawerOpen(true);
-  const closeDrawer = () => setIsDrawerOpen(false);
+  const toggleSidebar = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   const navigate = useNavigate();
   return (
     <div>
-      <div className="md:hidden">
-        <i onClick={openDrawer} className="hover:cursor-pointer ">
+      <div className={isDrawerOpen ? "hidden" : "md:hidden"}>
+        <i onClick={toggleSidebar} className="hover:cursor-pointer ">
           {isDrawerOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,9 +75,38 @@ const Sidebar = () => {
         </Drawer> */}
 
       <div
-        className="h-[calc(100vh-0rem)] w-full max-w-[20rem] p-4 hidden md:block"
+        className={`h-[calc(100vh-0rem)] w-full max-w-[20rem] p-4 ${
+          isDrawerOpen ? "block" : "hidden"
+        } md:block`}
         style={{ backgroundColor: "#04230C" }}
       >
+        <i onClick={toggleSidebar} className="hover:cursor-pointer md:hidden ">
+          {isDrawerOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              viewBox="0 -960 960 960"
+              width="24"
+            >
+              <path
+                fill="currentColor"
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              viewBox="0 -960 960 960"
+              width="24"
+            >
+              <path
+                fill="currentColor"
+                d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+              />
+            </svg>
+          )}
+        </i>
         <div className="mb-2 p-4">
           <img src={logo} alt="nithub logo" className="text-black" />
         </div>
