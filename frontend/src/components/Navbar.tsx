@@ -22,7 +22,7 @@ interface ContainerProps {
 }
 
 const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
-  const [active, setActive] = useState();
+  const [active, setActive] = useState(Number);
   const [open, setOpen] = useState(true);
 
   const handleSidebar = () => {
@@ -31,7 +31,7 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
 
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="">
       <div className="h-16 w-full" style={{ backgroundColor: "#04230C" }}>
         <div className=" mx-auto flex items-center justify-between text-blue-gray-900 p-3 ">
           <div className="flex gap-3">
@@ -55,9 +55,21 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
           </div>
           <div></div>
           <div className="flex items-center gap-4">
-            <Avatar src={avatar} alt="avatar" />
+            <Avatar
+              src={avatar}
+              alt="avatar"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            />
             <div className="hidden md:block">
-              <Typography variant="h6" color="white">
+              <Typography
+                variant="h6"
+                color="white"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              >
                 Josiah Elias
               </Typography>
             </div>
@@ -71,7 +83,12 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
             className={`h-[calc(100vh-4rem)] w-52 max-w-[20rem] p-4  md:block`}
             style={{ backgroundColor: "#04230C" }}
           >
-            <List className="flex gap-5">
+            <List
+              className="flex gap-5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               <ListItem
                 className={
                   active == 0 ? "bg-white text-black w-40" : "text-white w-40"
@@ -79,8 +96,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 onClick={() => {
                   setActive(0), navigate("/home");
                 }}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +119,14 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Home</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Home
+                </Typography>
               </ListItem>
               <ListItem
                 className={
@@ -104,8 +135,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 onClick={() => {
                   setActive(1), navigate("/dashboard");
                 }}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +158,14 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Dashboard</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Dashboard
+                </Typography>
               </ListItem>
               <ListItem
                 className={
@@ -129,8 +174,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 onClick={() => {
                   setActive(2), navigate("/inbox");
                 }}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +197,14 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Inbox</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Inbox
+                </Typography>
               </ListItem>
               <ListItem
                 className={
@@ -154,8 +213,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 onClick={() => {
                   setActive(3), navigate("/projects");
                 }}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +236,14 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Projects</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Projects
+                </Typography>
               </ListItem>
               <ListItem
                 className={
@@ -179,8 +252,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 onClick={() => {
                   setActive(4), navigate("/teams");
                 }}
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +275,14 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Teams</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Teams
+                </Typography>
               </ListItem>
               <ListItem
                 onClick={() => {
@@ -204,8 +291,15 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                 className={
                   active == 5 ? "bg-white text-black w-40" : "text-white w-40"
                 }
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
               >
-                <ListItemPrefix>
+                <ListItemPrefix
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   <i>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -220,12 +314,20 @@ const Nav_bar: React.FC<ContainerProps> = ({ children }) => {
                     </svg>
                   </i>
                 </ListItemPrefix>
-                <Typography variant="h6">Tasks</Typography>
+                <Typography
+                  variant="h6"
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  Tasks
+                </Typography>
               </ListItem>
             </List>
           </div>
         )}
-        <div>{children}</div>
+
+        <div className="w-full overflow-hidden">{children}</div>
       </div>
     </div>
   );

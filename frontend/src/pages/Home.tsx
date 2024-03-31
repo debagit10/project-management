@@ -1,20 +1,28 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import React from "react";
-import Calendar from "../components/Calendar";
+import LineGraph from "../components/LineGraph";
 
 import Nav_bar from "../components/Navbar";
+import UrgentTask from "../components/UrgentTask";
 
 const Home = () => {
   return (
     <Nav_bar>
-      <div className="container m-10">
+      <div className="p-5">
         <div>
           <Typography variant="h5" className="text-2xl">
             Home
           </Typography>
         </div>
-        <div>
-          <Card />
+
+        <div className=" mx-auto px-4 flex flex-col md:flex-row gap-8 ">
+          <div className="md:w-1/2">Recent Projects</div>
+          <div className="md:w-1/2">
+            <UrgentTask />
+          </div>
+        </div>
+        <div className="md:w-[80vw] sm:w-[60vw] mt-10">
+          <LineGraph />
         </div>
       </div>
     </Nav_bar>

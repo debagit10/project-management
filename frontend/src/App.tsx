@@ -10,6 +10,8 @@ import Teams from "./pages/Teams";
 import Tasks from "./pages/Tasks";
 import Dashboard from "./pages/Dashboard";
 import Inbox from "./pages/Inbox";
+import View_project from "./pages/View_project";
+import View_team from "./pages/View_team";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
       <Route path="/tasks" Component={Tasks} />
       <Route path="/dashboard" Component={Dashboard} />
       <Route path="/inbox" Component={Inbox} />
+      <Route path="/project/project-detail" Component={View_project} />
+      <Route path="/team/team-detail" Component={View_team} />
     </Routes>
   );
 }
