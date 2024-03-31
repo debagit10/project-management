@@ -8,9 +8,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div>
-        <Nav_bar />
-      </div>
+      
       <div className="container mx-auto px-4 flex flex-col md:flex-row gap-8 md:mt-20">
         <div className="md:w-1/2 ">
           <h1 className="text-5xl font-bold mb-4 text-green-900">

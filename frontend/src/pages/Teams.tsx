@@ -1,8 +1,19 @@
 import React from "react";
-import Container from "../components/Container";
+import Nav_bar from "../components/Navbar";
+import { Typography } from "@material-tailwind/react";
 
 const Teams = () => {
-  return <Container>Teams</Container>;
+  return (
+    <Nav_bar>
+      <div className="container m-10">
+        <div>
+          <Typography variant="h5" className="text-2xl">
+            Teams
+          </Typography>
+        </div>
+      </div>
+    </Nav_bar>
+  );
 };
 
 export default Teams;
