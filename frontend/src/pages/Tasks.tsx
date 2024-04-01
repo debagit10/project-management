@@ -41,7 +41,13 @@ const Tasks = () => {
           >
             My Task
           </Typography>
-          <Button>Add Task</Button>
+          <Button
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            Add Task
+          </Button>
         </div>
         <div className="mt-10">
           <Card

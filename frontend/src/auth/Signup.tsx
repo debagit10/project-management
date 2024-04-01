@@ -1,41 +1,78 @@
 import React from "react";
 import { Button, Typography, Input } from "@material-tailwind/react";
 import img from "../assets/landing-page-img.png";
-import Nav_bar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="mb-3">
-        <Nav_bar />
-      </div>
       <div className="container mx-auto px-4 flex flex-col md:flex-row gap-8 md:mt-20">
         <div className="md:w-1/2">
           <div className="flex justify-center">
-            <Typography className="font-bold mb-4 text-green-900" variant="h5">
+            <Typography
+              className="font-bold mb-4 text-green-900"
+              variant="h5"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               SIGNUP
             </Typography>
           </div>
           <div className="flex justify-center">
             <div className="flex justify-center flex-col w-72 gap-10 ">
-              <Input label="Name" size="lg" type="text" />
-              <Input label="Email" size="lg" type="email" />
-              <Input label="Password" size="lg" type="password" />
-              <Input label="Confrim Password" size="lg" type="password" />
+              <Input
+                label="Name"
+                size="lg"
+                type="text"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                crossOrigin={undefined}
+              />
+              <Input
+                label="Email"
+                size="lg"
+                type="email"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                crossOrigin={undefined}
+              />
+              <Input
+                label="Password"
+                size="lg"
+                type="password"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                crossOrigin={undefined}
+              />
+              <Input
+                label="Confrim Password"
+                size="lg"
+                type="password"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                crossOrigin={undefined}
+              />
             </div>
           </div>
           <div className="flex justify-center">
             <Button
               className="mt-10 w-72 h-12 text-white hover:bg-white bg-green-900 hover:text-green-900  text-md"
               variant="outlined"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             >
               SUBMIT
             </Button>
           </div>
           <div className="flex justify-center mt-3">
-            <Typography>
+            <Typography
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               Already have an account?{" "}
               <a
                 className="hover:underline hover:cursor-pointer"
