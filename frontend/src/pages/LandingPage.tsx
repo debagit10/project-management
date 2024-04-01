@@ -1,7 +1,5 @@
 import React from "react";
 import { Button } from "@material-tailwind/react";
-import logo from "../assets/logo.png";
-import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import { useNavigate } from "react-router-dom";
 
