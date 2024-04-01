@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Inbox from "./pages/Inbox";
 import View_project from "./pages/View_project";
 import View_team from "./pages/View_team";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path="/inbox" Component={Inbox} />
       <Route path="/project/project-detail" Component={View_project} />
       <Route path="/team/team-detail" Component={View_team} />
+      <Route path="/profile/profile-id" Component={Profile} />
     </Routes>
   );
 }

@@ -28,20 +28,40 @@ const View_team = () => {
     <Nav_bar>
       <div className="p-5">
         <div>
-          <Typography variant="h5" className="text-2xl">
+          <Typography
+            variant="h5"
+            className="text-2xl"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             Team name
           </Typography>
         </div>
         <div className="mt-10">
           <Tabs value="projects">
-            <TabsHeader>
+            <TabsHeader
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {data.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+                <Tab
+                  key={value}
+                  value={value}
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
                   {label}
                 </Tab>
               ))}
             </TabsHeader>
-            <TabsBody>
+            <TabsBody
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
               {data.map(({ value, desc }) => (
                 <TabPanel key={value} value={value}>
                   {desc}

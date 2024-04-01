@@ -10,7 +10,13 @@ const Home = () => {
     <Nav_bar>
       <div className="p-5">
         <div>
-          <Typography variant="h5" className="text-2xl">
+          <Typography
+            variant="h5"
+            className="text-2xl"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             Home
           </Typography>
         </div>
