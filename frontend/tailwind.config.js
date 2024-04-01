@@ -26,6 +26,10 @@ module.exports = withMT({
       outline: {
         green: ["1px solid #09421C"],
       },
+
+      backgroundImage: {
+        bg: "url(/src/assets/bg1.png)",
+      },
     },
   },
   plugins: [],
