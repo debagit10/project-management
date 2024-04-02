@@ -1,8 +1,16 @@
 import React from "react";
-import { Button, Typography, Input, Card } from "@material-tailwind/react";
+import {
+  Button,
+  Typography,
+  Input,
+  Card,
+  ButtonGroup,
+} from "@material-tailwind/react";
 //import img from "../assets/landing-page-img.png";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
+import search from "../assets/icons/search.png";
+import github from "../assets/icons/github.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +39,7 @@ const Login = () => {
               </Typography>
             </div>
             <div className="flex justify-center">
-              <div className="flex justify-center flex-col w-72 gap-10">
+              <div className="flex justify-center flex-col w-72 gap-5">
                 <Input
                   label="Email"
                   size="lg"
@@ -61,6 +69,34 @@ const Login = () => {
                 SUBMIT
               </Button>
             </div>
+
+            <div className="flex justify-center mt-2">
+              <p>OR Login with</p>
+            </div>
+            <div className="flex justify-center mt-2">
+              <ButtonGroup
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+                variant="text"
+              >
+                <Button
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  <img src={search} className="w-5" alt="google logo" />
+                </Button>
+                <Button
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                >
+                  <img src={github} className="w-5" alt="github logo" />
+                </Button>
+              </ButtonGroup>
+            </div>
+
             <div className="flex justify-center mt-3">
               <Typography
                 placeholder={undefined}
