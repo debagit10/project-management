@@ -8,7 +8,13 @@ const Dashboard = () => {
     <Nav_bar>
       <div className="container m-10">
         <div>
-          <Typography variant="h5" className="text-2xl">
+          <Typography
+            variant="h5"
+            className="text-2xl"
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
             Dashboard
           </Typography>
         </div>

@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
 const Calendar = () => {
-  const renderDayCellContent = (args) => {
+  const renderDayCellContent = (args: { date: any; }) => {
     const today = new Date();
     const date = args.date;
     const isToday =
