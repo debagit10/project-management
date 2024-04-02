@@ -1,7 +1,5 @@
 import { Typography } from "@material-tailwind/react";
 import React from "react";
-import LineGraph from "../components/LineGraph";
-
 import Nav_bar from "../components/Navbar";
 import UrgentTask from "../components/UrgentTask";
 
@@ -26,9 +24,6 @@ const Home = () => {
           <div className="md:w-1/2">
             <UrgentTask />
           </div>
-        </div>
-        <div className="md:w-[80vw] sm:w-[60vw] mt-10">
-          <LineGraph />
         </div>
       </div>
     </Nav_bar>
