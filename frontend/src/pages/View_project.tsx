@@ -25,8 +25,20 @@ const View_project = () => {
       to follow my dreams and inspire other people to follow their dreams, too.`,
     },
     {
-      label: "Reviews",
-      value: "review",
+      label: "Messages",
+      value: "messages",
+      desc: `Because it's about motivating the doers. Because I'm here
+      to follow my dreams and inspire other people to follow their dreams, too.`,
+    },
+    {
+      label: "Files",
+      value: "files",
+      desc: `Because it's about motivating the doers. Because I'm here
+      to follow my dreams and inspire other people to follow their dreams, too.`,
+    },
+    {
+      label: "Collaborators",
+      value: "collaborators",
       desc: `Because it's about motivating the doers. Because I'm here
       to follow my dreams and inspire other people to follow their dreams, too.`,
     },
