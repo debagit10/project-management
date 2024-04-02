@@ -1,16 +1,13 @@
 import React, { ReactNode, useState } from "react";
 import {
   Avatar,
-  Button,
+  
   Typography,
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Drawer,
+  
 } from "@material-tailwind/react";
-import { Navbar } from "@material-tailwind/react";
 
 import logo from "../assets/logo.png";
 import avatar from "../assets/avatar.jpg";

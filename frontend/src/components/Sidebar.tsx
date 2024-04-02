@@ -4,17 +4,17 @@ import {
   ListItemPrefix,
   Typography,
 } from "@material-tailwind/react";
-import React, { useState, ReactNode } from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [active, setActive] = useState(Number);
-  const [open, setOpen] = useState(true);
+  const [open] = useState(true);
 
-  const handleSidebar = () => {
-    setOpen(!open);
-  };
+  // const handleSidebar = () => {
+  //   setOpen(!open);
+  // };
 
   const navigate = useNavigate();
 
