@@ -1,34 +1,39 @@
 import React from "react";
-import { Card, Typography } from "@material-tailwind/react";
+import { Typography, Card } from "@material-tailwind/react";
+import Task_progress from "./Task_progress";
 
-const MyProjects = () => {
-  const TABLE_HEAD: string[] = ["Title", "Team", "Assignee"];
+const Team_projects = () => {
+  const TABLE_HEAD = ["Title", "Lead", "Progress"];
 
   const TABLE_ROWS = [
     {
-      title: "Task1",
-      team: "Blehh",
-      assignee: "John Doe",
-    },
-
-    {
-      title: "Task1",
-      team: "Mehh",
-      assignee: "John Doe",
+      title: "A project",
+      lead: "John Doe",
+      progress: <Task_progress />,
     },
     {
-      title: "Task1",
-      team: "A team",
-      assignee: "John Doe",
+      title: "A project",
+      lead: "John Doe",
+      progress: <Task_progress />,
     },
     {
-      title: "Task2",
-      team: "A team",
-      assignee: "John Doe",
+      title: "A project",
+      lead: "John Doe",
+      progress: <Task_progress />,
+    },
+    {
+      title: "A project",
+      lead: "John Doe",
+      progress: <Task_progress />,
+    },
+    {
+      title: "A project",
+      lead: "John Doe",
+      progress: <Task_progress />,
     },
   ];
   return (
-    <div>
+    <div className="mt-10">
       <Card
         className="w-full overflow-scroll"
         placeholder={undefined}
@@ -58,7 +63,7 @@ const MyProjects = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ title, team, assignee }, index) => {
+            {TABLE_ROWS.map(({ title, lead, progress }, index) => {
               const isLast = index === TABLE_ROWS.length - 1;
               const classes = isLast
                 ? "p-4"
@@ -87,7 +92,7 @@ const MyProjects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {team}
+                      {lead}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -99,7 +104,7 @@ const MyProjects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {assignee}
+                      {progress}
                     </Typography>
                   </td>
                 </tr>
@@ -112,4 +117,4 @@ const MyProjects = () => {
   );
 };
 
-export default MyProjects;
+export default Team_projects;

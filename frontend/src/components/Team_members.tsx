@@ -1,7 +1,18 @@
-import React from "react";
-import { Typography, Card } from "@material-tailwind/react";
+import React, { useState } from "react";
+import {
+  Typography,
+  Card,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@material-tailwind/react";
+import menu_icon from "../assets/icons/dots.png";
+import up_arrow from "../assets/icons/upload.png";
 
 const Team_members = () => {
+  const [openMenu, setOpenMenu] = useState(false);
   const TABLE_HEAD = ["Name", "Role", ""];
   const TABLE_ROWS = [
     {
@@ -89,6 +100,7 @@ const Team_members = () => {
                     </Typography>
                   </td>
                   <td className={classes}>
+                    {/*
                     <Typography
                       variant="small"
                       color="blue-gray"
@@ -98,7 +110,81 @@ const Team_members = () => {
                       onPointerLeaveCapture={undefined}
                     >
                       View
-                    </Typography>
+                    </Typography>*/}
+                    <Menu>
+                      <MenuHandler>
+                        <Button
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                          className="bg-white"
+                        >
+                          <img src={menu_icon} className="h-3.5 w-3.5" />
+                        </Button>
+                      </MenuHandler>
+                      <MenuList
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
+                        <MenuItem
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
+                          View profile
+                        </MenuItem>
+                        <Menu
+                          placement="right-start"
+                          open={openMenu}
+                          handler={setOpenMenu}
+                          allowHover
+                          offset={15}
+                        >
+                          <MenuHandler className="flex items-center justify-between">
+                            <MenuItem
+                              placeholder={undefined}
+                              onPointerEnterCapture={undefined}
+                              onPointerLeaveCapture={undefined}
+                            >
+                              Assign to project
+                              {/* <ChevronUpIcon
+                                strokeWidth={2.5}
+                                className={`h-3.5 w-3.5 transition-transform ${
+                                  openMenu ? "rotate-90" : ""
+                                }`}
+                              /> */}
+                              <img
+                                src={up_arrow}
+                                className={`h-2.5 w-2.5 transition-transform ${
+                                  openMenu ? "rotate-90" : ""
+                                }`}
+                              />
+                            </MenuItem>
+                          </MenuHandler>
+                          <MenuList
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
+                            <MenuItem
+                              placeholder={undefined}
+                              onPointerEnterCapture={undefined}
+                              onPointerLeaveCapture={undefined}
+                            >
+                              Project 1
+                            </MenuItem>
+                            <MenuItem
+                              placeholder={undefined}
+                              onPointerEnterCapture={undefined}
+                              onPointerLeaveCapture={undefined}
+                            >
+                              Project 2
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </MenuList>
+                    </Menu>
                   </td>
                 </tr>
               );

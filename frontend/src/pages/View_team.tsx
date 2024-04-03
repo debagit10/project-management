@@ -7,21 +7,29 @@ import {
   Tab,
   TabPanel,
   Typography,
+  Card,
 } from "@material-tailwind/react";
 import Team_members from "../components/Team_members";
+import Team_projects from "../components/Team_projects";
+import Meeting from "../components/Meeting";
 
 const View_team = () => {
   const data = [
     {
       label: "Outstanding Projects",
       value: "projects",
-      desc: "A table shaa",
+      desc: <Team_projects />,
     },
 
     {
       label: "Members",
       value: "members",
       desc: <Team_members />,
+    },
+    {
+      label: "Meeting schedule",
+      value: "meeting",
+      desc: <Meeting />,
     },
   ];
   return (
