@@ -10,7 +10,6 @@ const Task_progress = () => {
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
-        label="Completed"
         color="green"
         size="sm"
       />

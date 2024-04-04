@@ -8,6 +8,7 @@ import {
   TabPanel,
   Typography,
   Card,
+  Button,
 } from "@material-tailwind/react";
 import Team_members from "../components/Team_members";
 import Team_projects from "../components/Team_projects";
@@ -35,16 +36,28 @@ const View_team = () => {
   return (
     <Nav_bar>
       <div className="p-5">
-        <div>
-          <Typography
-            variant="h5"
-            className="text-2xl"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            Team name
-          </Typography>
+        <div className="flex flex-col">
+          <div>
+            <Typography
+              variant="h5"
+              className="text-2xl"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              Team name
+            </Typography>
+          </div>
+
+          <div className="flex justify-end">
+            <Button
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+              placeholder={undefined}
+            >
+              New project
+            </Button>
+          </div>
         </div>
         <div className="mt-10">
           <Tabs value="projects">

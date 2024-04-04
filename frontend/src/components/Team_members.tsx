@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 import menu_icon from "../assets/icons/dots.png";
 import up_arrow from "../assets/icons/upload.png";
+import View_Profile from "./View_Profile";
 
 const Team_members = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -127,13 +128,14 @@ const Team_members = () => {
                         onPointerEnterCapture={undefined}
                         onPointerLeaveCapture={undefined}
                       >
-                        <MenuItem
+                        {/* <MenuItem
                           placeholder={undefined}
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          View profile
-                        </MenuItem>
+                          <View_Profile />
+                        </MenuItem> */}
+                        <View_Profile />
                         <Menu
                           placement="right-start"
                           open={openMenu}
