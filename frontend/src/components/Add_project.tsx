@@ -6,6 +6,7 @@ import {
   Button,
   Typography,
   Input,
+  CardFooter,
 } from "@material-tailwind/react";
 
 const Add_project = () => {
@@ -119,6 +120,21 @@ const Add_project = () => {
               type="file"
             />
           </CardBody>
+
+          <CardFooter
+            placeholder={undefined}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          >
+            <Button
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+              className="w-full"
+            >
+              Submit
+            </Button>
+          </CardFooter>
         </Card>
       </Dialog>
     </>
