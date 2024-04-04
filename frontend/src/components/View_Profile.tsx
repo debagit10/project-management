@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Dialog,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-} from "@material-tailwind/react";
+import { Dialog, Card, CardBody, Typography } from "@material-tailwind/react";
 import avatar from "../assets/avatar.jpg";
 
 const View_Profile = () => {

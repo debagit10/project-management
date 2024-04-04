@@ -7,12 +7,11 @@ import {
   Tab,
   TabPanel,
   Typography,
-  Card,
-  Button,
 } from "@material-tailwind/react";
 import Team_members from "../components/Team_members";
 import Team_projects from "../components/Team_projects";
 import Meeting from "../components/Meeting";
+import Add_project from "../components/Add_project";
 
 const View_team = () => {
   const data = [
@@ -50,13 +49,7 @@ const View_team = () => {
           </div>
 
           <div className="flex justify-end">
-            <Button
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-              placeholder={undefined}
-            >
-              New project
-            </Button>
+            <Add_project />
           </div>
         </div>
         <div className="mt-10">
