@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Card } from "@material-tailwind/react";
-
 import Nav_bar from "../components/Navbar";
 
 const Projects = () => {
@@ -50,7 +49,7 @@ const Projects = () => {
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            Projects
+            My Projects
           </Typography>
         </div>
         <div className="mt-10">

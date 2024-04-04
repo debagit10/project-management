@@ -1,42 +1,17 @@
 import React from "react";
-import { Typography, Card } from "@material-tailwind/react";
-import Task_progress from "./Task_progress";
-import { useNavigate } from "react-router-dom";
+import { Card, Typography } from "@material-tailwind/react";
 
-const Team_projects = () => {
-  const navigate = useNavigate();
-
-  const TABLE_HEAD = ["Title", "Lead", "Progress"];
-
+const Projects_task = () => {
+  const TABLE_HEAD = ["", "Assigner", "Assignee", "Deadline"];
   const TABLE_ROWS = [
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      assigner: "John Doe",
+      assignee: "John Doe",
+      deadline: "21/05/1893",
     },
   ];
   return (
-    <div className="mt-10">
+    <div>
       <Card
         className="w-full overflow-scroll"
         placeholder={undefined}
@@ -66,17 +41,14 @@ const Team_projects = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ title, lead, progress }, index) => {
+            {TABLE_ROWS.map(({ assigner, assignee, deadline }, index) => {
               const isLast = index === TABLE_ROWS.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr
-                  key={title}
-                  onClick={() => navigate("/project/project-detail")}
-                >
+                <tr>
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -86,7 +58,7 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {title}
+                      <input type="checkbox" />
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -98,7 +70,7 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {lead}
+                      {assigner}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -110,7 +82,19 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {progress}
+                      {assignee}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                      placeholder={undefined}
+                      onPointerEnterCapture={undefined}
+                      onPointerLeaveCapture={undefined}
+                    >
+                      {deadline}
                     </Typography>
                   </td>
                 </tr>
@@ -123,4 +107,4 @@ const Team_projects = () => {
   );
 };
 
-export default Team_projects;
+export default Projects_task;

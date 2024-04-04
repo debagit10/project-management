@@ -3,28 +3,27 @@ import {
   Dialog,
   Card,
   CardBody,
-  Button,
   Typography,
   Input,
+  Button,
   CardFooter,
 } from "@material-tailwind/react";
 
-const Add_project = () => {
+const AssignTask = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
   return (
-    <>
-      <Button
+    <div>
+      <Typography
         onClick={handleOpen}
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
-        className="text-white bg-[#09421C] hover:bg-white hover:text-[#09421C]"
-        variant="outlined"
+        className="text-center hover:cursor-pointer "
       >
-        New project
-      </Button>
+        Assign task
+      </Typography>
       <Dialog
         placeholder={undefined}
         onPointerEnterCapture={undefined}
@@ -52,25 +51,9 @@ const Add_project = () => {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              Add project
+              Assign Task to User
             </Typography>
 
-            <Typography
-              className="-mb-2"
-              variant="h6"
-              placeholder={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              Title
-            </Typography>
-            <Input
-              label="Title"
-              size="lg"
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-              crossOrigin={undefined}
-            />
             <Typography
               className="-mb-2"
               variant="h6"
@@ -135,13 +118,13 @@ const Add_project = () => {
               className="text-white bg-[#09421C] hover:bg-white hover:text-[#09421C] w-full"
               variant="outlined"
             >
-              Submit
+              Assign
             </Button>
           </CardFooter>
         </Card>
       </Dialog>
-    </>
+    </div>
   );
 };
 
-export default Add_project;
+export default AssignTask;

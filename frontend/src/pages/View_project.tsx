@@ -8,39 +8,33 @@ import {
   TabPanel,
   Typography,
 } from "@material-tailwind/react";
+import Project_detail from "../components/Project_detail";
+import Projects_task from "../components/Projects_task";
+import Attachment from "../components/Attachment";
+import Project_collaborators from "../components/Project_collaborators";
 
 const View_project = () => {
   const data = [
     {
-      label: "Detail",
+      label: "Overview",
       value: "detail",
-      desc: `It really matters and then like it really doesn't matter.
-      What matters is the people who are sparked by it. And the people 
-      who are like offended by it, it doesn't matter.`,
+      desc: <Project_detail />,
     },
     {
       label: "Tasks",
       value: "tasks",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: <Projects_task />,
     },
+
     {
-      label: "Messages",
-      value: "messages",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
-    },
-    {
-      label: "Files",
-      value: "files",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      label: "Attachments",
+      value: "attachement",
+      desc: <Attachment />,
     },
     {
       label: "Collaborators",
       value: "collaborators",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: <Project_collaborators />,
     },
   ];
   return (

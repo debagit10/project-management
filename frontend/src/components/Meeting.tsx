@@ -1,4 +1,4 @@
-import { Button, Card, Input, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import React from "react";
 
 const Meeting = () => {

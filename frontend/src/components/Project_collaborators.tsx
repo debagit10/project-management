@@ -1,38 +1,39 @@
 import React from "react";
-import { Typography, Card } from "@material-tailwind/react";
-import Task_progress from "./Task_progress";
-import { useNavigate } from "react-router-dom";
+import {
+  Typography,
+  Card,
+  Menu,
+  MenuHandler,
+  MenuList,
+  Button,
+  MenuItem,
+} from "@material-tailwind/react";
+import menu_icon from "../assets/icons/dots.png";
+import View_Profile from "./View_Profile";
+import AssignTask from "./AssignTask";
 
-const Team_projects = () => {
-  const navigate = useNavigate();
-
-  const TABLE_HEAD = ["Title", "Lead", "Progress"];
-
+const Project_collaborators = () => {
+  const TABLE_HEAD = ["Name", "Role", ""];
   const TABLE_ROWS = [
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      name: "John Michael",
+      role: "Manager",
     },
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      name: "John Michael",
+      role: "Manager",
     },
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      name: "John Michael",
+      role: "Manager",
     },
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      name: "John Michael",
+      role: "Manager",
     },
     {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
+      name: "John Michael",
+      role: "Manager",
     },
   ];
   return (
@@ -66,17 +67,14 @@ const Team_projects = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ title, lead, progress }, index) => {
+            {TABLE_ROWS.map(({ name, role }, index) => {
               const isLast = index === TABLE_ROWS.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr
-                  key={title}
-                  onClick={() => navigate("/project/project-detail")}
-                >
+                <tr key={name}>
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -86,7 +84,7 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {title}
+                      {name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -98,10 +96,11 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {lead}
+                      {role}
                     </Typography>
                   </td>
                   <td className={classes}>
+                    {/*
                     <Typography
                       variant="small"
                       color="blue-gray"
@@ -110,8 +109,27 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {progress}
-                    </Typography>
+                      View
+                    </Typography>*/}
+                    <Menu>
+                      <MenuHandler>
+                        <Button
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                          className="bg-white"
+                        >
+                          <img src={menu_icon} className="h-3.5 w-3.5" />
+                        </Button>
+                      </MenuHandler>
+                      <MenuList
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                      >
+                        <AssignTask />
+                      </MenuList>
+                    </Menu>
                   </td>
                 </tr>
               );
@@ -123,4 +141,4 @@ const Team_projects = () => {
   );
 };
 
-export default Team_projects;
+export default Project_collaborators;

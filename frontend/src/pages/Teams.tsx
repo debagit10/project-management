@@ -41,7 +41,7 @@ const Teams = () => {
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            Teams
+            My Teams
           </Typography>
         </div>
         <div className="mt-10">
