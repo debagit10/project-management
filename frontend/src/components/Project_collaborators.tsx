@@ -6,10 +6,9 @@ import {
   MenuHandler,
   MenuList,
   Button,
-  MenuItem,
 } from "@material-tailwind/react";
 import menu_icon from "../assets/icons/dots.png";
-import View_Profile from "./View_Profile";
+
 import AssignTask from "./AssignTask";
 
 const Project_collaborators = () => {
