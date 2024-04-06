@@ -18,7 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" Component={LandingPage} />
-      <Route path="/auth/signup" Component={Signup} />
+      <Route path="/auth/sign_up" Component={Signup} />
       <Route path="/auth/login" Component={Login} />
       <Route path="/home" Component={Home} />
       <Route path="/projects" Component={Projects} />
