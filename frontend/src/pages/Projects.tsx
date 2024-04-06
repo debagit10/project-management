@@ -1,8 +1,10 @@
 import React from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import Nav_bar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
+  const navigate = useNavigate();
   const TABLE_HEAD = ["Title", "Assignee", "To", "Status"];
 
   const TABLE_ROWS = [
@@ -89,7 +91,10 @@ const Projects = () => {
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
-                    <tr key={name}>
+                    <tr
+                      key={name}
+                      onClick={() => navigate("/project/project-detail")}
+                    >
                       <td className={classes}>
                         <Typography
                           variant="small"

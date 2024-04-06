@@ -24,7 +24,7 @@ const Attachment = () => {
   ];
   return (
     <div>
-      <Tabs value="">
+      <Tabs value="files">
         <TabsHeader
           placeholder={undefined}
           onPointerEnterCapture={undefined}

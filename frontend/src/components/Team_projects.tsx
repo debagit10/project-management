@@ -1,10 +1,10 @@
 import React from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import Task_progress from "./Task_progress";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 const Team_projects = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const TABLE_HEAD = ["Title", "Lead", "Progress"];
 
@@ -73,10 +73,7 @@ const Team_projects = () => {
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr
-                  key={title}
-                  onClick={() => navigate("/project/project-detail")}
-                >
+                <tr key={title}>
                   <td className={classes}>
                     <Typography
                       variant="small"
