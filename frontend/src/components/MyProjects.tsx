@@ -12,17 +12,17 @@ const MyProjects = () => {
     },
 
     {
-      title: "Task1",
+      title: "Task2",
       team: "Mehh",
       assignee: "John Doe",
     },
     {
-      title: "Task1",
+      title: "Task3",
       team: "A team",
       assignee: "John Doe",
     },
     {
-      title: "Task2",
+      title: "Task4",
       team: "A team",
       assignee: "John Doe",
     },
