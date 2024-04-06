@@ -30,7 +30,7 @@ const LandingPage = () => {
           <Button
             className="mt-10 w-52 h-14 text-white hover:bg-transparent bg-green-900 hover:text-green-900  text-md"
             variant="outlined"
-            onClick={() => navigate("/auth/signup")}
+            onClick={() => navigate("/home")}
             placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
