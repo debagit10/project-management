@@ -11,9 +11,18 @@ import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
 import github from "../assets/icons/github.png";
+//import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
+
+  const handleGithubSignup = () => {
+    window.location.href = "http://localhost:5000/api/user/auth/github";
+  };
+
+  const handleGoogleSignup = () => {
+    window.location.href = "http://localhost:5000/api/user/auth/google";
+  };
   return (
     <>
       <div className="relative h-screen">
@@ -99,6 +108,7 @@ const Signup = () => {
                   placeholder={undefined}
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
+                  onClick={handleGoogleSignup}
                 >
                   <img src={search} className="w-5" alt="google logo" />
                 </Button>
@@ -106,6 +116,7 @@ const Signup = () => {
                   placeholder={undefined}
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
+                  onClick={handleGithubSignup}
                 >
                   <img src={github} className="w-5" alt="github logo" />
                 </Button>
