@@ -1,24 +1,14 @@
 import React from "react";
-import {
-  Button,
-  Typography,
-  Input,
-  Card,
-  ButtonGroup,
-} from "@material-tailwind/react";
+import { Button, Typography, Input, Card } from "@material-tailwind/react";
 //import img from "../assets/landing-page-img.png";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
-import github from "../assets/icons/github.png";
+
 //import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
-
-  const handleGithubSignup = () => {
-    window.location.href = "http://localhost:5000/api/user/auth/github";
-  };
 
   const handleGoogleSignup = () => {
     window.location.href = "http://localhost:5000/api/user/auth/google";
@@ -95,32 +85,27 @@ const Signup = () => {
               </Button>
             </div>
             <div className="flex justify-center mt-2">
-              <p>OR Signup with</p>
+              <p>OR </p>
             </div>
-            <div className="flex justify-center mt-2">
-              <ButtonGroup
+            <div>
+              <Button
                 placeholder={undefined}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
-                variant="text"
+                onClick={handleGoogleSignup}
+                className="bg-white text-black  w-72 h-12 flex items-center gap-4"
+                variant="outlined"
               >
-                <Button
+                <img src={search} className="w-5" alt="google logo" />
+                <Typography
                   placeholder={undefined}
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
-                  onClick={handleGoogleSignup}
+                  className="font-medium"
                 >
-                  <img src={search} className="w-5" alt="google logo" />
-                </Button>
-                <Button
-                  placeholder={undefined}
-                  onPointerEnterCapture={undefined}
-                  onPointerLeaveCapture={undefined}
-                  onClick={handleGithubSignup}
-                >
-                  <img src={github} className="w-5" alt="github logo" />
-                </Button>
-              </ButtonGroup>
+                  Sign up with Google
+                </Typography>
+              </Button>
             </div>
 
             <div className="flex justify-center mt-3">
