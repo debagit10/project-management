@@ -4,9 +4,10 @@ import { Button, Typography, Input, Card } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
+//import axios from "axios";
 
 const Login = () => {
-  const handleGoogleSignup = () => {
+  const handleGoogleSignup = async () => {
     window.location.href = "http://localhost:5000/api/user/auth/google";
 
     // fetch("http://localhost:5000/api/user/auth/google/callback")
