@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import Nav_bar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Projects = () => {
+  const [projects, setProjects] = useState([]);
+
+  const userProjects = async () => {
+    const config = { headers: { "Content-type": "application/json" } };
+    const data = {
+      userID: "66148df3fc0b0703202ad59e",
+    };
+    const response = await axios.get("http://localhost:5000/api/user/project", {
+      params: data,
+      headers: config.headers,
+    });
+
+    if (response.data) {
+      setProjects(response.data);
+    }
+  };
+
+  console.log(projects);
+
+  useEffect(() => {
+    userProjects();
+  }, []);
+
   const navigate = useNavigate();
   const TABLE_HEAD = ["Title", "Assignee", "To", "Status"];
 

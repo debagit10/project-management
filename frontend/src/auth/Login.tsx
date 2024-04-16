@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Typography, Input, Card } from "@material-tailwind/react";
 //import img from "../assets/landing-page-img.png";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
-//import axios from "axios";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleGoogleSignup = async () => {
     window.location.href = "http://localhost:5000/api/user/auth/google";
 
@@ -16,6 +18,31 @@ const Login = () => {
     //   .catch((error) => console.error("Error:", error));
   };
   const navigate = useNavigate();
+
+  type Data = {
+    email: string;
+    password: string;
+  };
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const login = async () => {
+    const data: Data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.get("http://localhost:5000/api/user/login", {
+        params: data,
+        headers: config.headers,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="relative h-screen">
@@ -49,6 +76,7 @@ const Login = () => {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   label="Password"
@@ -57,6 +85,7 @@ const Login = () => {
                   onPointerEnterCapture={undefined}
                   onPointerLeaveCapture={undefined}
                   crossOrigin={undefined}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -67,6 +96,7 @@ const Login = () => {
                 placeholder={undefined}
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
+                onClick={login}
               >
                 SUBMIT
               </Button>
