@@ -1,26 +1,93 @@
 import { Button, Input, Typography } from "@material-tailwind/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Meeting = () => {
-  const TABLE_HEAD = ["Title", "Date", "Time"];
+  const [title, setTitle] = useState("");
+  const [day, setDay] = useState("");
+  const [time, setTime] = useState("");
+  const [link, setLink] = useState("");
 
-  const TABLE_ROWS = [
-    {
-      title: "A meeting",
-      date: "21/1/24",
-      time: "9:00AM",
-    },
-    {
-      title: "A meeting",
-      date: "21/1/24",
-      time: "9:00AM",
-    },
-    {
-      title: "A meeting",
-      date: "21/1/24",
-      time: "9:00AM",
-    },
-  ];
+  const [meetings, setMeeting] = useState([]);
+
+  const { id } = useParams();
+
+  const data = {
+    day,
+    time,
+    title,
+    link,
+  };
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const addMeeting = async () => {
+    if (!day || !time || !title) {
+      toast.warning("Please fill requird fields", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/meeting/add?team_id=${id}`,
+        data,
+        config
+      );
+      console.log(response.data);
+      if (response.data.success) {
+        toast.success(response.data.success, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      } else {
+        toast.error(response.data.error, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMeeting = async () => {
+    const data = {
+      team_id: id,
+    };
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/meeting/get",
+        { params: data, headers: config.headers }
+      );
+      console.log(response.data);
+      setMeeting(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getMeeting();
+  }, [id]);
+
+  const TABLE_HEAD = ["Title", "Date", "Time"];
 
   return (
     <div className="flex flex-col md:flex-row gap-5 ">
@@ -57,8 +124,8 @@ const Meeting = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ title, date, time }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {meetings.map(({ title, day, time }, index) => {
+              const isLast = index === meetings.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
@@ -86,7 +153,7 @@ const Meeting = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {date}
+                      {day}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -123,6 +190,16 @@ const Meeting = () => {
             onPointerLeaveCapture={undefined}
             crossOrigin={undefined}
             label="Meeting title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="w-36 mt-3">
+          <Input
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+            crossOrigin={undefined}
+            label="Meeting Link"
+            onChange={(e) => setLink(e.target.value)}
           />
         </div>
         <div className="w-36 mt-3">
@@ -139,6 +216,7 @@ const Meeting = () => {
             crossOrigin={undefined}
             type="date"
             label="Pick day"
+            onChange={(e) => setDay(e.target.value)}
           />
         </div>
         <div className="w-36 mt-3">
@@ -155,6 +233,7 @@ const Meeting = () => {
             crossOrigin={undefined}
             type="time"
             label="Pick time"
+            onChange={(e) => setTime(e.target.value)}
           />
         </div>
         <div className="mt-3">
@@ -162,12 +241,14 @@ const Meeting = () => {
             placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
-            className="text-white bg-[#09421C] hover:bg-white hover:text-[#09421C]"
+            className="text-[#09421C]"
             variant="outlined"
+            onClick={addMeeting}
           >
             Submit
           </Button>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

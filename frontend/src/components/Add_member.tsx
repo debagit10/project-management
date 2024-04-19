@@ -28,7 +28,7 @@ const Add_member = () => {
 
   const submit = async () => {
     if (!email) {
-      toast.error("Please input the user's email", {
+      toast.warning("Please input the user's email", {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: true,
