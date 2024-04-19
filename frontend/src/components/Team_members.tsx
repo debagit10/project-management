@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Card,
@@ -11,32 +11,39 @@ import {
 import menu_icon from "../assets/icons/dots.png";
 import up_arrow from "../assets/icons/upload.png";
 import View_Profile from "./View_Profile";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Team_members = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const TABLE_HEAD = ["Name", "Role", ""];
-  const TABLE_ROWS = [
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-  ];
+  const [members, setMembers] = useState([]);
+
+  const { id } = useParams();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const data = {
+    team_id: id,
+  };
+
+  const getMembers = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/member/get", {
+        params: data,
+        headers: config.headers,
+      });
+      setMembers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getMembers();
+  }, [data]);
+
+  const TABLE_HEAD = ["Name", "Email", "Options"];
+
   return (
     <div className="mt-10">
       <Card
@@ -68,14 +75,14 @@ const Team_members = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, role }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {members.map(({ member_name, member_id, member_email }, index) => {
+              const isLast = index === members.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr key={name}>
+                <tr key={member_id}>
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -85,7 +92,7 @@ const Team_members = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {name}
+                      {member_name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -97,9 +104,10 @@ const Team_members = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {role}
+                      {member_email}
                     </Typography>
                   </td>
+
                   <td className={classes}>
                     {/*
                     <Typography
