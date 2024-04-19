@@ -12,6 +12,7 @@ import Team_members from "../components/Team_members";
 import Team_projects from "../components/Team_projects";
 import Meeting from "../components/Meeting";
 import Add_project from "../components/Add_project";
+import Add_member from "../components/Add_member";
 
 const View_team = () => {
   const data = [
@@ -48,7 +49,8 @@ const View_team = () => {
             </Typography>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-3">
+            <Add_member />
             <Add_project />
           </div>
         </div>
