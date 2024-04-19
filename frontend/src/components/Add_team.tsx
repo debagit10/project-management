@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 type Data = {
   user_id: string;
   name: string;
+  username: string;
 };
 
 const Add_team = () => {
@@ -26,6 +27,7 @@ const Add_team = () => {
   const data: Data = {
     user_id: "661e84e85fb89b8ed502de2f",
     name: name,
+    username: "Void",
   };
 
   const config = { headers: { "Content-type": "application/json" } };

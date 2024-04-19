@@ -19,21 +19,21 @@ const Teams = () => {
 
   const data: Data = { userID: "661e84e85fb89b8ed502de2f" };
 
-  useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/user/team",
-          { params: data, headers: config.headers }
-        );
-        setTeams(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const fetchTeams = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/user/team", {
+        params: data,
+        headers: config.headers,
+      });
+      setTeams(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
     fetchTeams();
-  }, []);
+  }, [data]);
 
   const TABLE_HEAD = ["Name", "Admin"];
 
@@ -87,7 +87,7 @@ const Teams = () => {
                 </tr>
               </thead>
               <tbody>
-                {teams.map(({ name, admin_id }, index) => {
+                {teams.map(({ name, admin_name }, index) => {
                   const isLast = index === teams.length - 1;
                   const classes = isLast
                     ? "p-4"
@@ -120,7 +120,7 @@ const Teams = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {admin_id}
+                          {admin_name}
                         </Typography>
                       </td>
                     </tr>
