@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import Task_progress from "./Task_progress";
 import { useParams } from "react-router-dom";
@@ -6,20 +6,23 @@ import axios from "axios";
 //import { useNavigate } from "react-router-dom";
 
 const Team_projects = () => {
+  const [projects, setProjects] = useState([]);
   const { id } = useParams();
   //const navigate = useNavigate();
 
   const config = { headers: { "Content-type": "application/json" } };
 
-  const team_id = id;
+  const data = {
+    team_id: id,
+  };
 
   const getProject = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/project/add",
-        { params: team_id, headers: config.headers }
+        "http://localhost:5000/api/project/get",
+        { params: data, headers: config.headers }
       );
-      console.log(response);
+      setProjects(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,37 +30,10 @@ const Team_projects = () => {
 
   useEffect(() => {
     getProject();
-  }, [id]);
+  }, [data]);
 
-  const TABLE_HEAD = ["Title", "Lead", "Progress"];
+  const TABLE_HEAD = ["Title", "Deadline", "Progress"];
 
-  const TABLE_ROWS = [
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-    {
-      title: "A project",
-      lead: "John Doe",
-      progress: <Task_progress />,
-    },
-  ];
   return (
     <div className="mt-10">
       <Card
@@ -89,8 +65,8 @@ const Team_projects = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ title, lead, progress }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {projects.map(({ title, deadline }, index) => {
+              const isLast = index === projects.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
@@ -118,7 +94,7 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {lead}
+                      {deadline}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -130,7 +106,7 @@ const Team_projects = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {progress}
+                      <Task_progress />
                     </Typography>
                   </td>
                 </tr>
