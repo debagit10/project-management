@@ -1,48 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav_bar from "../components/Navbar";
 import { Typography, Card } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Add_team from "../components/Add_team";
 
 const Teams = () => {
   const navigate = useNavigate();
+  const [teams, setTeams] = useState([]);
+  //const [error, setError] = useState();
 
-  const TABLE_HEAD = ["Name", "Role"];
+  //const userID = "661e84e85fb89b8ed502de2f";
+  const config = { headers: { "Content-type": "application/json" } };
 
-  const TABLE_ROWS = [
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "Alexa Liras",
-      role: "Developer",
-    },
-    {
-      name: "Laurent Perrier",
-      role: "Executive",
-    },
-    {
-      name: "Michael Levi",
-      role: "Developer",
-    },
-    {
-      name: "Richard Gran",
-      role: "Manager",
-    },
-  ];
+  type Data = {
+    userID: string;
+  };
+
+  const data: Data = { userID: "661e84e85fb89b8ed502de2f" };
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/user/team",
+          { params: data, headers: config.headers }
+        );
+        setTeams(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTeams();
+  }, []);
+
+  const TABLE_HEAD = ["Name", "Admin"];
+
   return (
     <Nav_bar>
       <div className="container m-10 md:w-[80vw] sm:w-[60vw]">
-        <div>
-          <Typography
-            variant="h5"
-            className="text-2xl"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            My Teams
-          </Typography>
+        <div className="flex flex-col">
+          <div>
+            <Typography
+              variant="h5"
+              className="text-2xl"
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+            >
+              My Teams
+            </Typography>
+          </div>
+
+          <div className="flex justify-end">
+            <Add_team />
+          </div>
         </div>
         <div className="mt-10">
           <Card
@@ -74,8 +87,8 @@ const Teams = () => {
                 </tr>
               </thead>
               <tbody>
-                {TABLE_ROWS.map(({ name, role }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+                {teams.map(({ name, admin_id }, index) => {
+                  const isLast = index === teams.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
@@ -107,7 +120,7 @@ const Teams = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {role}
+                          {admin_id}
                         </Typography>
                       </td>
                     </tr>

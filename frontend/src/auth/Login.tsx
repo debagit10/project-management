@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Typography, Input, Card } from "@material-tailwind/react";
-//import img from "../assets/landing-page-img.png";
 import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
@@ -11,11 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const handleGoogleSignup = async () => {
     window.location.href = "http://localhost:5000/api/user/auth/google";
-
-    // fetch("http://localhost:5000/api/user/auth/google/callback")
-    //   .then((response) => response.json())
-    //   .then((userData) => console.log(userData))
-    //   .catch((error) => console.error("Error:", error));
   };
   const navigate = useNavigate();
 
@@ -37,7 +31,9 @@ const Login = () => {
         params: data,
         headers: config.headers,
       });
-      console.log(response);
+      if (response.data.message == "Login successful") {
+        navigate("/home");
+      }
     } catch (error) {
       console.log(error);
     }
