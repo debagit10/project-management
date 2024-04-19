@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Card } from "@material-tailwind/react";
 import Task_progress from "./Task_progress";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 //import { useNavigate } from "react-router-dom";
 
 const Team_projects = () => {
+  const { id } = useParams();
   //const navigate = useNavigate();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const team_id = id;
+
+  const getProject = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/project/add",
+        { params: team_id, headers: config.headers }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProject();
+  }, [id]);
 
   const TABLE_HEAD = ["Title", "Lead", "Progress"];
 

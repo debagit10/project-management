@@ -87,7 +87,7 @@ const Teams = () => {
                 </tr>
               </thead>
               <tbody>
-                {teams.map(({ name, admin_name }, index) => {
+                {teams.map(({ _id, name, admin_name }, index) => {
                   const isLast = index === teams.length - 1;
                   const classes = isLast
                     ? "p-4"
@@ -96,7 +96,7 @@ const Teams = () => {
                   return (
                     <tr
                       key={name}
-                      onClick={() => navigate("/team/team-detail")}
+                      onClick={() => navigate(`/team/${_id}`)}
                       className="hover:bg-blue-gray-100"
                     >
                       <td className={classes}>

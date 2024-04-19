@@ -27,7 +27,7 @@ function App() {
       <Route path="/dashboard" Component={Dashboard} />
       <Route path="/inbox" Component={Inbox} />
       <Route path="/project/project-detail" Component={View_project} />
-      <Route path="/team/team-detail" Component={View_team} />
+      <Route path="/team/:id" Component={View_team} />
       <Route path="/profile/profile-id" Component={Profile} />
     </Routes>
   );
