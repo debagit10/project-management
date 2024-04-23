@@ -38,7 +38,7 @@ const Add_collaborator = ({ member }: { member: any }) => {
         data,
         config
       );
-      console.log(response.data);
+
       if (response.data.success) {
         toast.success(response.data.success, {
           position: "top-center",

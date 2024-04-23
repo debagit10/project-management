@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
-import Task_progress from "./Task_progress";
+import Task_progress from "./Project_progress";
 import Meeting from "./Meeting";
 
 const Project_detail = () => {

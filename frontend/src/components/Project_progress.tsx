@@ -1,7 +1,7 @@
 import React from "react";
 import { Progress } from "@material-tailwind/react";
 
-const Task_progress = () => {
+const Project_progress = () => {
   return (
     <div>
       <Progress
@@ -17,4 +17,4 @@ const Task_progress = () => {
   );
 };
 
-export default Task_progress;
+export default Project_progress;

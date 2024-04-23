@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Card } from "@material-tailwind/react";
-import Task_progress from "./Task_progress";
+import Task_progress from "./Project_progress";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 //import { useNavigate } from "react-router-dom";

@@ -25,6 +25,8 @@ const Add_project = () => {
 
   const { id } = useParams();
   const team_id = id;
+  const user_id = "661e84e85fb89b8ed502de2f";
+  const user_name = "Void";
 
   const data = {
     team_id,
@@ -33,6 +35,8 @@ const Add_project = () => {
     deadline,
     file,
     link,
+    user_id,
+    user_name,
   };
 
   const config = { headers: { "Content-type": "application/json" } };

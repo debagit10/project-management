@@ -3,67 +3,70 @@ import { Typography, Card } from "@material-tailwind/react";
 import Nav_bar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Project_progress from "../components/Project_progress";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
 
-  const userProjects = async () => {
-    const config = { headers: { "Content-type": "application/json" } };
-    const data = {
-      userID: "66148df3fc0b0703202ad59e",
-    };
-    const response = await axios.get("http://localhost:5000/api/user/project", {
-      params: data,
-      headers: config.headers,
-    });
+  const config = { headers: { "Content-type": "application/json" } };
 
-    if (response.data) {
+  const userID = "661e84e85fb89b8ed502de2f";
+
+  const userProjects = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/user/project?userID=${userID}`,
+        {
+          headers: config.headers,
+        }
+      );
+
       setProjects(response.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  console.log(projects);
-
   useEffect(() => {
     userProjects();
-  }, []);
+  }, [userID]);
 
   const navigate = useNavigate();
-  const TABLE_HEAD = ["Title", "Assignee", "To", "Status"];
+  const TABLE_HEAD = ["Title", "Deadline", "Progress"];
 
-  const TABLE_ROWS = [
-    {
-      name: "John Michael",
-      job: "Manager",
-      date: "23/04/18",
-      status: "In progress",
-    },
-    {
-      name: "Alexa Liras",
-      job: "Developer",
-      date: "23/04/18",
-      status: "On hold",
-    },
-    {
-      name: "Laurent Perrier",
-      job: "Executive",
-      date: "19/09/17",
-      status: "In Progress",
-    },
-    {
-      name: "Michael Levi",
-      job: "Developer",
-      date: "24/12/08",
-      status: "On hold",
-    },
+  // const TABLE_ROWS = [
+  //   {
+  //     name: "John Michael",
+  //     job: "Manager",
+  //     date: "23/04/18",
+  //     status: "In progress",
+  //   },
+  //   {
+  //     name: "Alexa Liras",
+  //     job: "Developer",
+  //     date: "23/04/18",
+  //     status: "On hold",
+  //   },
+  //   {
+  //     name: "Laurent Perrier",
+  //     job: "Executive",
+  //     date: "19/09/17",
+  //     status: "In Progress",
+  //   },
+  //   {
+  //     name: "Michael Levi",
+  //     job: "Developer",
+  //     date: "24/12/08",
+  //     status: "On hold",
+  //   },
 
-    {
-      name: "Richard Gran",
-      job: "Manager",
-      date: "04/10/21",
-      status: "In progress",
-    },
-  ];
+  //   {
+  //     name: "Richard Gran",
+  //     job: "Manager",
+  //     date: "04/10/21",
+  //     status: "In progress",
+  //   },
+  // ];
   return (
     <Nav_bar>
       <div className="container m-10 md:w-[80vw] sm:w-[60vw]">
@@ -108,16 +111,16 @@ const Projects = () => {
                 </tr>
               </thead>
               <tbody>
-                {TABLE_ROWS.map(({ name, job, date, status }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+                {projects.map((project: any, index) => {
+                  const isLast = index === projects.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
                     <tr
-                      key={name}
-                      onClick={() => navigate("/project/project-detail")}
+                      key={project._id}
+                      onClick={() => navigate(`/project/${project._id}`)}
                     >
                       <td className={classes}>
                         <Typography
@@ -128,7 +131,7 @@ const Projects = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {name}
+                          {project.title}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -140,7 +143,7 @@ const Projects = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {job}
+                          {project.deadline}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -152,21 +155,7 @@ const Projects = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {date}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          as="a"
-                          href="#"
-                          variant="small"
-                          color="blue-gray"
-                          className="font-medium"
-                          placeholder={undefined}
-                          onPointerEnterCapture={undefined}
-                          onPointerLeaveCapture={undefined}
-                        >
-                          {status}
+                          <Project_progress />
                         </Typography>
                       </td>
                     </tr>
