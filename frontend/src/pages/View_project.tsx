@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav_bar from "../components/Navbar";
 import {
   Tabs,
@@ -12,8 +12,31 @@ import Project_detail from "../components/Project_detail";
 import Projects_task from "../components/Projects_task";
 import Attachment from "../components/Attachment";
 import Project_collaborators from "../components/Project_collaborators";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const View_project = () => {
+  const [detail, setDetail] = useState<any>([]);
+  const { id } = useParams();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getProject = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/project/getDetail?project_id=${id}`,
+        { headers: config.headers }
+      );
+      setDetail(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProject();
+  }, [id]);
+
   const data = [
     {
       label: "Overview",
@@ -48,7 +71,7 @@ const View_project = () => {
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            Project Name
+            {detail.title}
           </Typography>
         </div>
         <div className="mt-10">

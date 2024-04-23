@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Card,
@@ -8,33 +8,36 @@ import {
   Button,
 } from "@material-tailwind/react";
 import menu_icon from "../assets/icons/dots.png";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import AssignTask from "./AssignTask";
 
 const Project_collaborators = () => {
+  const [collaborators, setCollaborators] = useState<any>([]);
+  const { id } = useParams();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getCollaborators = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/collaborator/get?project_id=${id}`,
+        { headers: config.headers }
+      );
+
+      setCollaborators(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCollaborators();
+  }, [id]);
+
   const TABLE_HEAD = ["Name", "Role", ""];
-  const TABLE_ROWS = [
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-    {
-      name: "John Michael",
-      role: "Manager",
-    },
-  ];
+
   return (
     <div className="mt-10">
       <Card
@@ -66,14 +69,14 @@ const Project_collaborators = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ name, role }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {collaborators.map((collaborator: any, index: any) => {
+              const isLast = index === collaborators.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr key={name}>
+                <tr key={collaborator.collaborator_id}>
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -83,7 +86,7 @@ const Project_collaborators = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {name}
+                      {collaborator.collaborator_name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -95,21 +98,10 @@ const Project_collaborators = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {role}
+                      {collaborator.role}
                     </Typography>
                   </td>
                   <td className={classes}>
-                    {/*
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                      placeholder={undefined}
-                      onPointerEnterCapture={undefined}
-                      onPointerLeaveCapture={undefined}
-                    >
-                      View
-                    </Typography>*/}
                     <Menu>
                       <MenuHandler>
                         <Button
@@ -125,8 +117,15 @@ const Project_collaborators = () => {
                         placeholder={undefined}
                         onPointerEnterCapture={undefined}
                         onPointerLeaveCapture={undefined}
+                        onClick={() =>
+                          console.log(
+                            collaborator.collaborator_id,
+                            collaborator.collaborator_name,
+                            id
+                          )
+                        }
                       >
-                        <AssignTask />
+                        <AssignTask collaborator={collaborator} />
                       </MenuList>
                     </Menu>
                   </td>

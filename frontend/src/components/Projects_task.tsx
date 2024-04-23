@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Typography } from "@material-tailwind/react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Projects_task = () => {
+  const [tasks, setTask] = useState([]);
+  const { id } = useParams();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getTask = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/task/get?project_id=${id}`,
+        { headers: config.headers }
+      );
+      console.log(response.data);
+      setTask(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTask();
+  }, [id]);
+
   const TABLE_HEAD = ["", "Assigner", "Assignee", "Deadline"];
-  const TABLE_ROWS = [
-    {
-      assigner: "John Doe",
-      assignee: "John Doe",
-      deadline: "21/05/1893",
-    },
-  ];
+
   return (
     <div>
       <Card
@@ -41,8 +59,8 @@ const Projects_task = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ assigner, assignee, deadline }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {tasks.map((task: any, index) => {
+              const isLast = index === tasks.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
@@ -70,7 +88,7 @@ const Projects_task = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {assigner}
+                      {task.assignee_name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -82,7 +100,7 @@ const Projects_task = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {assignee}
+                      {task.assigner_name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -94,7 +112,7 @@ const Projects_task = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {deadline}
+                      {task.deadline}
                     </Typography>
                   </td>
                 </tr>
