@@ -65,14 +65,14 @@ const Team_projects = () => {
             </tr>
           </thead>
           <tbody>
-            {projects.map(({ title, deadline }, index) => {
+            {projects.map(({ title, deadline, _id }, index) => {
               const isLast = index === projects.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr key={title}>
+                <tr key={_id}>
                   <td className={classes}>
                     <Typography
                       variant="small"

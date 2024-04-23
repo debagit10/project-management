@@ -42,7 +42,7 @@ const Meeting = () => {
         data,
         config
       );
-      console.log(response.data);
+
       if (response.data.success) {
         toast.success(response.data.success, {
           position: "top-center",
@@ -76,7 +76,7 @@ const Meeting = () => {
         "http://localhost:5000/api/meeting/get",
         { params: data, headers: config.headers }
       );
-      console.log(response.data);
+
       setMeeting(response.data);
     } catch (error) {
       console.log(error);

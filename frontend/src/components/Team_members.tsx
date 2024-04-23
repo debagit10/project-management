@@ -9,13 +9,12 @@ import {
   Button,
 } from "@material-tailwind/react";
 import menu_icon from "../assets/icons/dots.png";
-import up_arrow from "../assets/icons/upload.png";
 import View_Profile from "./View_Profile";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Add_collaborator from "./Add_collaborator";
 
 const Team_members = () => {
-  const [openMenu, setOpenMenu] = useState(false);
   const [members, setMembers] = useState([]);
 
   const { id } = useParams();
@@ -75,14 +74,14 @@ const Team_members = () => {
             </tr>
           </thead>
           <tbody>
-            {members.map(({ member_name, member_id, member_email }, index) => {
+            {members.map((member: any, index) => {
               const isLast = index === members.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
               return (
-                <tr key={member_id}>
+                <tr key={member.member_id}>
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -92,7 +91,7 @@ const Team_members = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {member_name}
+                      {member.member_name}
                     </Typography>
                   </td>
                   <td className={classes}>
@@ -104,22 +103,11 @@ const Team_members = () => {
                       onPointerEnterCapture={undefined}
                       onPointerLeaveCapture={undefined}
                     >
-                      {member_email}
+                      {member.member_email}
                     </Typography>
                   </td>
 
                   <td className={classes}>
-                    {/*
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                      placeholder={undefined}
-                      onPointerEnterCapture={undefined}
-                      onPointerLeaveCapture={undefined}
-                    >
-                      View
-                    </Typography>*/}
                     <Menu>
                       <MenuHandler>
                         <Button
@@ -131,69 +119,20 @@ const Team_members = () => {
                           <img src={menu_icon} className="h-3.5 w-3.5" />
                         </Button>
                       </MenuHandler>
-                      <MenuList
+                      <MenuItem
                         placeholder={undefined}
                         onPointerEnterCapture={undefined}
                         onPointerLeaveCapture={undefined}
                       >
-                        {/* <MenuItem
+                        <MenuList
                           placeholder={undefined}
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
                           <View_Profile />
-                        </MenuItem> */}
-                        <View_Profile />
-                        <Menu
-                          placement="right-start"
-                          open={openMenu}
-                          handler={setOpenMenu}
-                          allowHover
-                          offset={15}
-                        >
-                          <MenuHandler className="flex items-center justify-between">
-                            <MenuItem
-                              placeholder={undefined}
-                              onPointerEnterCapture={undefined}
-                              onPointerLeaveCapture={undefined}
-                            >
-                              Assign to project
-                              {/* <ChevronUpIcon
-                                strokeWidth={2.5}
-                                className={`h-3.5 w-3.5 transition-transform ${
-                                  openMenu ? "rotate-90" : ""
-                                }`}
-                              /> */}
-                              <img
-                                src={up_arrow}
-                                className={`h-2.5 w-2.5 transition-transform ${
-                                  openMenu ? "rotate-90" : ""
-                                }`}
-                              />
-                            </MenuItem>
-                          </MenuHandler>
-                          <MenuList
-                            placeholder={undefined}
-                            onPointerEnterCapture={undefined}
-                            onPointerLeaveCapture={undefined}
-                          >
-                            <MenuItem
-                              placeholder={undefined}
-                              onPointerEnterCapture={undefined}
-                              onPointerLeaveCapture={undefined}
-                            >
-                              Project 1
-                            </MenuItem>
-                            <MenuItem
-                              placeholder={undefined}
-                              onPointerEnterCapture={undefined}
-                              onPointerLeaveCapture={undefined}
-                            >
-                              Project 2
-                            </MenuItem>
-                          </MenuList>
-                        </Menu>
-                      </MenuList>
+                          <Add_collaborator member={member} />
+                        </MenuList>
+                      </MenuItem>
                     </Menu>
                   </td>
                 </tr>
