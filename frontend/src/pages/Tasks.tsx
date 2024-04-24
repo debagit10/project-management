@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import Nav_bar from "../components/Navbar";
 import { Typography, Card, Button } from "@material-tailwind/react";
 
-const Tasks = () => {
-  const TABLE_HEAD = ["", "Name", "Priority", "Action"];
+const userID = "661e84e85fb89b8ed502de2f";
 
-  const TABLE_ROWS = [
-    {
-      name: "Task1",
-      priority: "High",
-    },
-    {
-      name: "Task1",
-      priority: "Low",
-    },
-    {
-      name: "Task1",
-      priority: "Medium",
-    },
-    {
-      name: "Task1",
-      priority: "High",
-    },
-    {
-      name: "Task1",
-      priority: "Low",
-    },
-  ];
+const Tasks = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getTasks = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/user/task?userID=${userID}`,
+        { headers: config.headers }
+      );
+
+      setTasks(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTasks();
+  }, [userID]);
+
+  const TABLE_HEAD = ["Task", "Assigner", "Deadline"];
+
   return (
     <Nav_bar>
       <div className="container m-10 md:w-[80vw] sm:w-[60vw]">
@@ -39,15 +41,8 @@ const Tasks = () => {
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            My Task
+            My Tasks
           </Typography>
-          <Button
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            Add Task
-          </Button>
         </div>
         <div className="mt-10">
           <Card
@@ -79,14 +74,14 @@ const Tasks = () => {
                 </tr>
               </thead>
               <tbody>
-                {TABLE_ROWS.map(({ name, priority }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+                {tasks.map((task: any, index) => {
+                  const isLast = index === task.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
-                    <tr key={name}>
+                    <tr key={task._id}>
                       <td className={classes}>
                         <Typography
                           variant="small"
@@ -96,7 +91,7 @@ const Tasks = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          <input type="checkbox" />
+                          {task.about}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -108,7 +103,7 @@ const Tasks = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {name}
+                          {task.assigner_name}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -120,19 +115,7 @@ const Tasks = () => {
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          {priority}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                          placeholder={undefined}
-                          onPointerEnterCapture={undefined}
-                          onPointerLeaveCapture={undefined}
-                        >
-                          Edit
+                          {task.deadline}
                         </Typography>
                       </td>
                     </tr>

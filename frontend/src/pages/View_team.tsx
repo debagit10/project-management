@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav_bar from "../components/Navbar";
 import {
   Tabs,
@@ -13,8 +13,31 @@ import Team_projects from "../components/Team_projects";
 import Meeting from "../components/Meeting";
 import Add_project from "../components/Add_project";
 import Add_member from "../components/Add_member";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const View_team = () => {
+  const [team, setTeam] = useState<any>([]);
+  const { id } = useParams();
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getTeam = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/team/getDetail?team_id=${id}`,
+        { headers: config.headers }
+      );
+      setTeam(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTeam();
+  }, [id]);
+
   const data = [
     {
       label: "Outstanding Projects",
@@ -45,7 +68,7 @@ const View_team = () => {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
             >
-              Team name
+              {team.name}
             </Typography>
           </div>
 
