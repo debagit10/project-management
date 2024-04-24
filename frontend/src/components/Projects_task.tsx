@@ -15,7 +15,6 @@ const Projects_task = () => {
         `http://localhost:5000/api/task/get?project_id=${id}`,
         { headers: config.headers }
       );
-      console.log(response.data);
       setTask(response.data);
     } catch (error) {
       console.log(error);

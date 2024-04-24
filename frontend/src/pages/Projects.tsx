@@ -32,41 +32,8 @@ const Projects = () => {
   }, [userID]);
 
   const navigate = useNavigate();
-  const TABLE_HEAD = ["Title", "Deadline", "Progress"];
+  const TABLE_HEAD = ["Title", "Deadline"];
 
-  // const TABLE_ROWS = [
-  //   {
-  //     name: "John Michael",
-  //     job: "Manager",
-  //     date: "23/04/18",
-  //     status: "In progress",
-  //   },
-  //   {
-  //     name: "Alexa Liras",
-  //     job: "Developer",
-  //     date: "23/04/18",
-  //     status: "On hold",
-  //   },
-  //   {
-  //     name: "Laurent Perrier",
-  //     job: "Executive",
-  //     date: "19/09/17",
-  //     status: "In Progress",
-  //   },
-  //   {
-  //     name: "Michael Levi",
-  //     job: "Developer",
-  //     date: "24/12/08",
-  //     status: "On hold",
-  //   },
-
-  //   {
-  //     name: "Richard Gran",
-  //     job: "Manager",
-  //     date: "04/10/21",
-  //     status: "In progress",
-  //   },
-  // ];
   return (
     <Nav_bar>
       <div className="container m-10 md:w-[80vw] sm:w-[60vw]">
@@ -144,18 +111,6 @@ const Projects = () => {
                           onPointerLeaveCapture={undefined}
                         >
                           {project.deadline}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                          placeholder={undefined}
-                          onPointerEnterCapture={undefined}
-                          onPointerLeaveCapture={undefined}
-                        >
-                          <Project_progress />
                         </Typography>
                       </td>
                     </tr>

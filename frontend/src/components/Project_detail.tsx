@@ -57,7 +57,7 @@ const Project_detail = () => {
             >
               Progress of the project in %
             </Typography>
-            <Task_progress />
+            <Task_progress id={id} />
           </div>
           <div className="mt-3">
             <Meeting />

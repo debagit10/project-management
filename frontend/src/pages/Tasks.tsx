@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Nav_bar from "../components/Navbar";
-import { Typography, Card, Button } from "@material-tailwind/react";
+import { Typography, Card } from "@material-tailwind/react";
 
 const userID = "661e84e85fb89b8ed502de2f";
 

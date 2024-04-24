@@ -32,7 +32,7 @@ const Team_projects = () => {
     getProject();
   }, [data]);
 
-  const TABLE_HEAD = ["Title", "Deadline", "Progress"];
+  const TABLE_HEAD = ["Title", "Deadline"];
 
   return (
     <div className="mt-10">
@@ -95,18 +95,6 @@ const Team_projects = () => {
                       onPointerLeaveCapture={undefined}
                     >
                       {deadline}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                      placeholder={undefined}
-                      onPointerEnterCapture={undefined}
-                      onPointerLeaveCapture={undefined}
-                    >
-                      <Task_progress />
                     </Typography>
                   </td>
                 </tr>
