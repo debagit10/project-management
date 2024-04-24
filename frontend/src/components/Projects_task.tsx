@@ -21,6 +21,14 @@ const Projects_task = () => {
     }
   };
 
+  // const upDateTask = async () => {
+  //   try {
+  //     const response = await axios.put("http://localhost:5000/api/task/update", )
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   useEffect(() => {
     getTask();
   }, [id]);

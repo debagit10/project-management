@@ -3,19 +3,20 @@ import { Progress } from "@material-tailwind/react";
 import axios from "axios";
 
 const Project_progress = ({ id }: { id: any }) => {
-  const [done, setDone] = useState([]);
-  const [tasks, setTask] = useState([]);
+  const [tasks, setTask] = useState<any>([]);
+
+  const total: any = [];
+
   const config = { headers: { "Content-type": "application/json" } };
+
   const projectTasks = async () => {
     try {
-      const tasks = await axios.get(
+      const response = await axios.get(
         `http://localhost:5000/api/task/get?project_id=${id}`,
         { headers: config.headers }
       );
-      setTask(tasks.data);
-      if (tasks.data.status == true) {
-        setDone(tasks.data);
-      }
+
+      setTask(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +26,13 @@ const Project_progress = ({ id }: { id: any }) => {
     projectTasks();
   }, [id]);
 
-  const value = (done.length / tasks.length) * 100;
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].status === true) {
+      total.push(tasks[i]);
+    }
+  }
+
+  const value = (total.length / tasks.length) * 100;
 
   return (
     <div>
@@ -37,6 +44,7 @@ const Project_progress = ({ id }: { id: any }) => {
         onPointerLeaveCapture={undefined}
         color="green"
         size="sm"
+        label
       />
     </div>
   );
