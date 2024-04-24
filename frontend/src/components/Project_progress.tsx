@@ -37,7 +37,6 @@ const Project_progress = ({ id }: { id: any }) => {
         onPointerLeaveCapture={undefined}
         color="green"
         size="sm"
-        label={`${value}`}
       />
     </div>
   );
