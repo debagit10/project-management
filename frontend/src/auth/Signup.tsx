@@ -79,11 +79,11 @@ const Signup = () => {
         config
       );
 
-      if (response) {
+      if (response.data.token) {
+        const token = response.data.token;
         setLoading(false);
-        const user = response.data;
-        setCookies("username", user.name);
-        setCookies("email", user.email);
+        navigate("/home");
+        setCookies("token", token);
       }
       if (response.data.error) {
         toast.error(response.data.error, {

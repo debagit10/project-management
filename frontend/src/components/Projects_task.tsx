@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import UpdateTask from "./UpdateTask";
 
 const Projects_task = () => {
   const [tasks, setTask] = useState([]);
@@ -20,14 +21,6 @@ const Projects_task = () => {
       console.log(error);
     }
   };
-
-  // const upDateTask = async () => {
-  //   try {
-  //     const response = await axios.put("http://localhost:5000/api/task/update", )
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   useEffect(() => {
     getTask();
@@ -75,16 +68,7 @@ const Projects_task = () => {
               return (
                 <tr>
                   <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                      placeholder={undefined}
-                      onPointerEnterCapture={undefined}
-                      onPointerLeaveCapture={undefined}
-                    >
-                      <input type="checkbox" />
-                    </Typography>
+                    <UpdateTask task={task} />
                   </td>
                   <td className={classes}>
                     <Typography

@@ -4,20 +4,23 @@ import { Typography, Card } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Add_team from "../components/Add_team";
+import { useCookies } from "react-cookie";
 
 const Teams = () => {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies();
   //const [error, setError] = useState();
 
-  //const userID = "661e84e85fb89b8ed502de2f";
+  const token = cookies.Token;
+
   const config = { headers: { "Content-type": "application/json" } };
 
   type Data = {
-    userID: string;
+    token: string;
   };
 
-  const data: Data = { userID: "661e84e85fb89b8ed502de2f" };
+  const data: Data = { token };
 
   const fetchTeams = async () => {
     try {
@@ -25,6 +28,11 @@ const Teams = () => {
         params: data,
         headers: config.headers,
       });
+      console.log(response.data);
+      if (response.data === "Error") {
+        navigate("/auth/login");
+        return;
+      }
       setTeams(response.data);
     } catch (error) {
       console.log(error);
@@ -59,75 +67,79 @@ const Teams = () => {
         </div>
         <div className="mt-10">
           <Card
-            className="w-full overflow-scroll"
+            className="w-full "
             placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
           >
-            <table className="w-full min-w-max table-auto text-left">
-              <thead>
-                <tr>
-                  {TABLE_HEAD.map((head) => (
-                    <th
-                      key={head}
-                      className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-                    >
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal leading-none opacity-70"
-                        placeholder={undefined}
-                        onPointerEnterCapture={undefined}
-                        onPointerLeaveCapture={undefined}
+            {teams.length > 0 ? (
+              <table className="w-full min-w-max table-auto text-left">
+                <thead>
+                  <tr>
+                    {TABLE_HEAD.map((head) => (
+                      <th
+                        key={head}
+                        className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
                       >
-                        {head}
-                      </Typography>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {teams.map(({ _id, name, admin_name }, index) => {
-                  const isLast = index === teams.length - 1;
-                  const classes = isLast
-                    ? "p-4"
-                    : "p-4 border-b border-blue-gray-50";
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal leading-none opacity-70"
+                          placeholder={undefined}
+                          onPointerEnterCapture={undefined}
+                          onPointerLeaveCapture={undefined}
+                        >
+                          {head}
+                        </Typography>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {teams.map(({ _id, name, admin_name }, index) => {
+                    const isLast = index === teams.length - 1;
+                    const classes = isLast
+                      ? "p-4"
+                      : "p-4 border-b border-blue-gray-50";
 
-                  return (
-                    <tr
-                      key={name}
-                      onClick={() => navigate(`/team/${_id}`)}
-                      className="hover:bg-blue-gray-100"
-                    >
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                          placeholder={undefined}
-                          onPointerEnterCapture={undefined}
-                          onPointerLeaveCapture={undefined}
-                        >
-                          {name}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                          placeholder={undefined}
-                          onPointerEnterCapture={undefined}
-                          onPointerLeaveCapture={undefined}
-                        >
-                          {admin_name}
-                        </Typography>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                    return (
+                      <tr
+                        key={name}
+                        onClick={() => navigate(`/team/${_id}`)}
+                        className="hover:bg-blue-gray-100"
+                      >
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
+                            {name}
+                          </Typography>
+                        </td>
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                          >
+                            {admin_name}
+                          </Typography>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              "You have no team"
+            )}
           </Card>
         </div>
       </div>

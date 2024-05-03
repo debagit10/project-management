@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import search from "../assets/icons/search.png";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie, removeCookies] = useCookies();
+
   const handleGoogleSignup = async () => {
     window.location.href = "http://localhost:5000/api/user/auth/google";
   };
@@ -31,8 +34,12 @@ const Login = () => {
         params: data,
         headers: config.headers,
       });
+      console.log(response.data.user.token);
       if (response.data.message == "Login successful") {
+        const token = response.data.user.token;
+
         navigate("/home");
+        setCookie("token", token);
       }
     } catch (error) {
       console.log(error);
