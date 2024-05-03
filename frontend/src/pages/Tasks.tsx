@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 import Nav_bar from "../components/Navbar";
 import { Typography, Card } from "@material-tailwind/react";
 
-const userID = "661e84e85fb89b8ed502de2f";
-
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [cookies, setCookie, removeCookieS] = useCookies();
 
   const config = { headers: { "Content-type": "application/json" } };
+
+  const token = cookies.token;
 
   const getTasks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/user/task?userID=${userID}`,
+        `http://localhost:5000/api/user/task?token=${token}`,
         { headers: config.headers }
       );
 
@@ -26,7 +28,7 @@ const Tasks = () => {
 
   useEffect(() => {
     getTasks();
-  }, [userID]);
+  }, [token]);
 
   const TABLE_HEAD = ["Task", "Assigner", "Deadline"];
 
