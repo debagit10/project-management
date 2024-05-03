@@ -12,7 +12,7 @@ const Teams = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
   //const [error, setError] = useState();
 
-  const token = cookies.Token;
+  const token = cookies.token;
 
   const config = { headers: { "Content-type": "application/json" } };
 
