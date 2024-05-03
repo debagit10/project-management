@@ -3,19 +3,21 @@ import { Typography, Card } from "@material-tailwind/react";
 import Nav_bar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Project_progress from "../components/Project_progress";
+//import Project_progress from "../components/Project_progress";
+import { useCookies } from "react-cookie";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   const config = { headers: { "Content-type": "application/json" } };
 
-  const userID = "661e84e85fb89b8ed502de2f";
+  const token = cookies.token;
 
   const userProjects = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/user/project?userID=${userID}`,
+        `http://localhost:5000/api/user/project?token=${token}`,
         {
           headers: config.headers,
         }
@@ -29,7 +31,7 @@ const Projects = () => {
 
   useEffect(() => {
     userProjects();
-  }, [userID]);
+  }, [token]);
 
   const navigate = useNavigate();
   const TABLE_HEAD = ["Title", "Deadline"];
